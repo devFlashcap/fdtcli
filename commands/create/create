@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+set -e
+. "$FDTCLI_WORKDIR/common"
+
+cli_help_create() {
+    echo "
+Command: create
+Usage: 
+    create [asset name]"
+    exit 1
+}
+
+case "$1" in
+    project|p)
+        shift 1
+        "$FDTCLI_WORKDIR/commands/create/project/project" "$@"
+    ;;
+    *)
+        cli_help_create
+    ;;
+esac

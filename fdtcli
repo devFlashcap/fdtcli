@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+export FDTCLI_WORKDIR=$(cd $(dirname $0) && pwd) 
+
+cli_name=$(basename $0)
+
+cli_help(){
+    echo "
+Flash DevTools CLI
+Version: $(cat $FDTCLI_WORKDIR/VERSION)
+
+Usage: $cli_name [command]
+
+Commands:
+    create      Create new asset
+    *           Help
+"
+    exit 1
+}
+
+case "$1" in
+    create|c)
+        shift 1
+        "$FDTCLI_WORKDIR/commands/create/create" "$@"
+    ;;
+    *)
+        cli_help
+    ;;
+esac

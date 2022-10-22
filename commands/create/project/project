@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+set -e
+. "$FDTCLI_WORKDIR/common"
+
+cli_help_create() {
+    echo "
+Command: project
+Usage: 
+    project [type]"
+    exit 1
+}
+
+case "$1" in
+    dotnet)
+        shift 1
+        "$FDTCLI_WORKDIR/commands/create/project/dotnet" "$@"
+    ;;
+    *)
+        cli_help_create
+    ;;
+esac
